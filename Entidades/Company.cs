@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Negocios
+namespace Entidades
 {
-    public class Class1
+    public class Company
     {
+        public string Id { get; set; }
+        public string Name { get; set; }
     }
+
 }

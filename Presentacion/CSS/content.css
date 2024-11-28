@@ -1,0 +1,60 @@
+﻿/* ===== Colors ===== */
+:root {
+    --body-color: #E4E9F7; /* Fondo del cuerpo */
+    --sidebar-color: #FFF; /* Fondo de la barra lateral */
+    --primary-color: #124072; /* Color principal */
+    --primary-color-light: #F6F5FF; /* Color de hover en botones */
+    --toggle-color: #DDD; /* Color del toggle */
+    --text-color: #707070; /* Color del texto */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-color);
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    background-color: var(--sidebar-color);
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+}
+
+    .sidebar .nav-link {
+        color: var(--text-color);
+        font-size: 1rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 5px 15px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .sidebar .nav-link:hover {
+            background-color: var(--primary-color-light);
+            color: var(--primary-color);
+        }
+
+        .sidebar .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.tab-pane h1 {
+    color: var(--primary-color);
+}
+
+.tab-pane p {
+    color: var(--text-color);
+}

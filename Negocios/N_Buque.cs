@@ -20,16 +20,16 @@ namespace Negocios
                 Mensaje = "Error: El nombre de la categoría es obligatorio.";
             if (buque.IdEmpresa.Equals("0"))
                 Mensaje = "Error: El buque tiene qe estar relacionado a una empresa";
-            if (DB.BuscarCategoriaPorCriterio(buque.NombreBuque).Count > 0) // Llamada a la capa de datos para buscar el nombre de la categoría                Mensaje = "Error: El nombre de la categoría " + categoria.NombreCategoria + " ya existe en la base de datos.";
+            //if (DB.BuscarCategoriaPorCriterio(buque.NombreBuque).Count > 0) // Llamada a la capa de datos para buscar el nombre de la categoría                Mensaje = "Error: El nombre de la categoría " + categoria.NombreCategoria + " ya existe en la base de datos.";
                 if (Mensaje == string.Empty) //Validaciones correctas
                 {
                     int R;
-                    Mensaje = "Error: La categoria " + categoria.NombreCategoria + " no se ha podido insertar";
+                    Mensaje = "Error: El Buque " + buque.NombreBuque + " no se ha podido insertar";
 
-                    R = DC.IBM_Categorias("INSERTAR", categoria);
+                    R = DB.IBM_Buques("INSERTAR", buque);
 
                     if (R > 0)
-                        Mensaje = "Exito: La categoria " + categoria.NombreCategoria + " se ha insertado correctamente";
+                        Mensaje = "Exito: El buque " + buque.NombreBuque + " se ha insertado correctamente";
                     return Mensaje;
                 }
             return Mensaje;

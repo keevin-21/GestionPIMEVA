@@ -154,7 +154,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contenido\Gestion_Buques.aspx" />
+    <Content Include="Contenido\Historial_Cambios.aspx" />
     <Content Include="Contenido\Inicio.aspx" />
+    <Content Include="Contenido\Logistica.aspx" />
+    <Content Include="Contenido\Perfil_Usuario.aspx" />
     <Content Include="Contenido\Schedule.aspx" />
     <Content Include="CSS\content.css" />
     <Content Include="CSS\personal.css" />
@@ -165,12 +169,40 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contenido\Gestion_Buques.aspx.cs">
+      <DependentUpon>Gestion_Buques.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contenido\Gestion_Buques.aspx.designer.cs">
+      <DependentUpon>Gestion_Buques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contenido\Historial_Cambios.aspx.cs">
+      <DependentUpon>Historial_Cambios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contenido\Historial_Cambios.aspx.designer.cs">
+      <DependentUpon>Historial_Cambios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contenido\Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Contenido\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contenido\Logistica.aspx.cs">
+      <DependentUpon>Logistica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contenido\Logistica.aspx.designer.cs">
+      <DependentUpon>Logistica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contenido\Perfil_Usuario.aspx.cs">
+      <DependentUpon>Perfil_Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contenido\Perfil_Usuario.aspx.designer.cs">
+      <DependentUpon>Perfil_Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contenido\Schedule.aspx.cs">
       <DependentUpon>Schedule.aspx</DependentUpon>

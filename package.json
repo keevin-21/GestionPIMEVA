@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "datatables.net-dt": "^2.1.8"
+  }
+}

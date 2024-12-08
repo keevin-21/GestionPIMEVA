@@ -16,7 +16,7 @@ namespace Datos
         public int IBM_Buques(string accion, E_Buque buque)
         {
             int resultados = 0;
-            SqlCommand cmd = new SqlCommand("IBM_Buques", conexion);
+            SqlCommand cmd = new SqlCommand("sp_GestionarBuque", conexion);
             try
             {
                 using (conexion)

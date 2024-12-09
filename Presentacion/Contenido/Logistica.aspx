@@ -10,23 +10,23 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <table id="logisticaTable" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>ID Registro</th>
-                    <th>Buque</th>
-                    <th>LOA</th>
-                    <th>Operation Time</th>
-                    <th>ETA</th>
-                    <th>POB</th>
-                    <th>ETB</th>
-                    <th>ETC</th>
-                    <th>ETD</th>
-                    <th>Cargo</th>
-                </tr>
-            </thead>
-        </table>
-
-    <!-- Referencia al archivo JS -->
-    <script type="module" src="../RECURSOS/JavaScript/TablaDeLogistica.js"></script>
+        <thead>
+            <tr>
+                <th>Buque</th>
+                <th>LOA</th>
+                <th>Operation Time</th>
+                <th>ETA</th>
+                <th>POB</th>
+                <th>ETB</th>
+                <th>ETC</th>
+                <th>ETD</th>
+                <th>Cargo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se añadirán nuevas filas -->
+        </tbody>
+    </table>
+    <script type="text/javascript" src="../RECURSOS/JavaScript/TablaDeLogistica.js"></script>
 
 </asp:Content>

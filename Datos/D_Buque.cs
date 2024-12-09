@@ -47,7 +47,7 @@ namespace Datos
         public List<E_Buque> ListarBuques()
         {
             List<E_Buque> LstBuques = new List<E_Buque>();
-            SqlCommand cmd = new SqlCommand("LstBuques", conexion);
+            SqlCommand cmd = new SqlCommand("sp_LstBuques", conexion);
             try
             {
                 using (conexion)

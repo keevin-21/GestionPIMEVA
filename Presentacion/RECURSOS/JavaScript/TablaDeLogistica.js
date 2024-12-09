@@ -13,10 +13,9 @@ $(document).ready(function () {
             }
         },
         columns: [
-            { data: 'IdRegistro', title: 'ID Registro' },
             { data: 'Buque', title: 'Buque' },
             { data: 'LOA', title: 'LOA' },
-            { data: 'Operation Time', title: 'Operation Time' },
+            { data: 'OperationTime', title: 'Operation Time' },
             { data: 'ETA', title: 'ETA' },
             { data: 'POB', title: 'POB' },
             { data: 'ETB', title: 'ETB' },

@@ -45,6 +45,7 @@
     <Compile Include="D_Buque.cs" />
     <Compile Include="D_Categorias.cs" />
     <Compile Include="D_ConexionBD.cs" />
+    <Compile Include="D_Empresa.cs" />
     <Compile Include="D_TablaDeLogistica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

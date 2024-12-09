@@ -31,6 +31,5 @@ namespace Presentacion.Contenido
                 throw new Exception("Error al obtener datos: " + ex.Message);
             }
         }
-
     }
 }

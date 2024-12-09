@@ -34,5 +34,11 @@ namespace Negocios
         {
             return dBuque.GestionarBuque("MODIFICAR", buque);
         }
+        public List<E_Buque> ObtenerBuques()
+        {
+            return DB.ListarBuques();
+        }
     }
+
+
 }

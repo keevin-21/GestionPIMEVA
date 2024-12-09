@@ -34,5 +34,11 @@ namespace Negocios
                 }
             return Mensaje;
         }
+        public List<E_Buque> ObtenerBuques()
+        {
+            return DB.ListarBuques();
+        }
     }
+
+
 }

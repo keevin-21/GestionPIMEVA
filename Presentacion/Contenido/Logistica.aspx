@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginasMaestras/SideBar.Master" AutoEventWireup="true" CodeBehind="Logistica.aspx.cs" Inherits="Presentacion.Contenido.Logistica" %>
+﻿<%@ Page Title="Tabla Logistica" Language="C#" MasterPageFile="~/PaginasMaestras/SideBar.Master" AutoEventWireup="true" CodeBehind="Logistica.aspx.cs" Inherits="Presentacion.Contenido.Logistica" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Logística</title> 

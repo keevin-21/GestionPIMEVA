@@ -11,28 +11,25 @@ namespace Negocios
     public class N_Buque
     {
         D_Buque DB = new D_Buque();
-
         public string InsertarBuque(E_Buque buque)
         {
-            string Mensaje = string.Empty;
-            // Validaciones
-            if (string.IsNullOrWhiteSpace(buque.NombreBuque))
-                Mensaje = "Error: El nombre de la categoría es obligatorio.";
-            if (buque.IdEmpresa.Equals("0"))
-                Mensaje = "Error: El buque tiene qe estar relacionado a una empresa";
-            //if (DB.BuscarCategoriaPorCriterio(buque.NombreBuque).Count > 0) // Llamada a la capa de datos para buscar el nombre de la categoría                Mensaje = "Error: El nombre de la categoría " + categoria.NombreCategoria + " ya existe en la base de datos.";
-                if (Mensaje == string.Empty) //Validaciones correctas
-                {
-                    int R;
-                    Mensaje = "Error: El Buque " + buque.NombreBuque + " no se ha podido insertar";
+            return DB.IBM_Buques("INSERTAR", buque) > 0 ? "Buque insertado exitosamente" : "Error al insertar buque";
+        }
 
-                    R = DB.IBM_Buques("INSERTAR", buque);
+        public string ModificarBuque(E_Buque buque)
+        {
+            return DB.IBM_Buques("MODIFICAR", buque) > 0 ? "Buque modificado exitosamente" : "Error al modificar buque";
+        }
 
-                    if (R > 0)
-                        Mensaje = "Exito: El buque " + buque.NombreBuque + " se ha insertado correctamente";
-                    return Mensaje;
-                }
-            return Mensaje;
+        public string BorrarBuque(int idBuque)
+        {
+            E_Buque buque = new E_Buque { IdBuque = idBuque };
+            return DB.IBM_Buques("BORRAR", buque) > 0 ? "Buque borrado exitosamente" : "Error al borrar buque";
+        }
+
+        public List<E_Buque> ListarBuques()
+        {
+            return DB.ListarBuques();
         }
         public List<E_Buque> ObtenerBuques()
         {
@@ -42,3 +39,4 @@ namespace Negocios
 
 
 }
+

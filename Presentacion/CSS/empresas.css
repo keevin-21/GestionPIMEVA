@@ -1,0 +1,49 @@
+﻿:root {
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #124072;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+    --alternative-color: #616161;
+}
+
+body {
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: #FFF;
+}
+
+.btn-success {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: var(--alternative-color);
+    border-color: var(--primary-color-light);
+    --text-color: var(--text-color);
+}
+
+.btn-danger {
+    background-color: #D9534F;
+    border-color: #D43F3A;
+}
+
+.table thead th {
+    background-color: var(--primary-color);
+    color: #FFF;
+}
+
+.table {
+    background-color: var(--sidebar-color);
+}

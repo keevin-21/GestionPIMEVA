@@ -19,10 +19,9 @@ namespace Datos
             {
                 string query = @"
                     SELECT 
-                        l.IdRegistro,
                         b.NombreBuque AS Buque,
                         l.LOA,
-                        FORMAT(OperationTime, 'HH:mm') AS [Operation Time],
+                        FORMAT(l.OperationTime, 'HH:mm') AS [OperationTime],
                         l.ETA,
                         l.POB,
                         l.ETB,
@@ -42,5 +41,6 @@ namespace Datos
 
             return dt;
         }
+
     }
 }

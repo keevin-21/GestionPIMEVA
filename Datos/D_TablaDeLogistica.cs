@@ -22,7 +22,7 @@ namespace Datos
                         l.IdRegistro,
                         b.NombreBuque AS Buque,
                         l.LOA,
-                        l.OperationTime AS [Operation Time],
+                        FORMAT(OperationTime, 'HH:mm') AS [Operation Time],
                         l.ETA,
                         l.POB,
                         l.ETB,

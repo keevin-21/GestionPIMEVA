@@ -162,7 +162,6 @@
     <Content Include="Contenido\Inicio.aspx" />
     <Content Include="Contenido\Logistica.aspx" />
     <Content Include="Contenido\Perfil_Usuario.aspx" />
-    <Content Include="Contenido\Schedule.aspx" />
     <Content Include="CSS\content.css" />
     <Content Include="CSS\personal.css" />
     <Content Include="CSS\sidebar-styles.css" />
@@ -207,13 +206,6 @@
     </Compile>
     <Compile Include="Contenido\Perfil_Usuario.aspx.designer.cs">
       <DependentUpon>Perfil_Usuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Contenido\Schedule.aspx.cs">
-      <DependentUpon>Schedule.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contenido\Schedule.aspx.designer.cs">
-      <DependentUpon>Schedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

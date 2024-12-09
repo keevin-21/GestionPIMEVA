@@ -4,6 +4,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Contenido de usuarios</h1>
+    <h1>Contenido de Buques</h1>
 </asp:Content>
 

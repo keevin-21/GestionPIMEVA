@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Services;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace Presentacion.Contenido
 {
@@ -31,5 +32,24 @@ namespace Presentacion.Contenido
                 throw new Exception("Error al obtener datos: " + ex.Message);
             }
         }
+        [WebMethod]
+        public static string ObtenerBuquesRegistrados()
+        {
+            try
+            {
+                var negocioBuque = new N_Buque();
+                var buques = negocioBuque.ObtenerBuques();
+
+                // Devuelve solo los nombres de los buques
+                var nombresBuques = buques.Where(b => b.Estado).Select(b => b.NombreBuque).ToList();
+
+                return JsonConvert.SerializeObject(nombresBuques);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cargar los datos de los buques: " + ex.Message);
+            }
+        }
+
     }
 }

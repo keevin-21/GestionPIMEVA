@@ -31,6 +31,12 @@ namespace Negocios
         {
             return DB.ListarBuques();
         }
+        public List<E_Buque> ObtenerBuques()
+        {
+            return DB.ListarBuques();
+        }
     }
+
+
 }
 

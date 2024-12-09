@@ -1,36 +1,38 @@
-﻿using Datos;
-using Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entidades;
+using Datos;
 
 namespace Negocios
 {
     public class N_Buque
     {
-        D_Buque DB = new D_Buque();
-        public string InsertarBuque(E_Buque buque)
+        D_Buque dBuque = new D_Buque();
+
+        public List<E_Buque> ListarBuques(string nombreBuque = null, bool? estado = null)
         {
-            return DB.IBM_Buques("INSERTAR", buque) > 0 ? "Buque insertado exitosamente" : "Error al insertar buque";
+            return dBuque.ListarBuques(nombreBuque, estado);
         }
 
-        public string ModificarBuque(E_Buque buque)
+        public E_Buque BuscarBuquePorID(int idBuque)
         {
-            return DB.IBM_Buques("MODIFICAR", buque) > 0 ? "Buque modificado exitosamente" : "Error al modificar buque";
+            return dBuque.BuscarBuquePorID(idBuque);
+        }
+
+        public string InsertarBuque(E_Buque buque)
+        {
+            return dBuque.GestionarBuque("INSERTAR", buque);
         }
 
         public string BorrarBuque(int idBuque)
         {
             E_Buque buque = new E_Buque { IdBuque = idBuque };
-            return DB.IBM_Buques("BORRAR", buque) > 0 ? "Buque borrado exitosamente" : "Error al borrar buque";
+            return dBuque.GestionarBuque("BORRAR", buque);
         }
 
-        public List<E_Buque> ListarBuques()
+        public string ModificarBuque(E_Buque buque)
         {
-            return DB.ListarBuques();
+            return dBuque.GestionarBuque("MODIFICAR", buque);
         }
     }
 }
-

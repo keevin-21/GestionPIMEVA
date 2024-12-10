@@ -1,9 +1,11 @@
-﻿using PdfSharp.Pdf.Content.Objects;
-using System;
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 
 public partial class Login : System.Web.UI.Page
 {
@@ -12,50 +14,103 @@ public partial class Login : System.Web.UI.Page
         string correo = txtCorreo.Text.Trim();
         string password = txtPassword.Text;
 
-        if (ValidarUsuario(correo, password))
+        if (ValidarCredenciales(correo, password))
         {
-            // Crea la cookie de autenticación
-            // El segundo parámetro(false) indica que la cookie no será
-            // persistente(cerrará sesión al cerrar el navegador).
-            System.Web.Security.FormsAuthentication.SetAuthCookie(correo, false);
-
-            // Redirige al dashboard o página principal
-            Response.Redirect("~/Contenido/Logistica.aspx");
+            // Redirige al usuario al panel principal
+            Response.Redirect("../Contenido/Logistica.aspx");
         }
         else
         {
-            // Mostrar mensaje de error
-            Response.Write("<script>alert('Credenciales incorrectas.');</script>");
+            // Muestra un mensaje de error
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Correo o contraseña incorrectos.');", true);
         }
     }
-    private bool ValidarUsuario(string correo, string password)
+
+    private bool ValidarCredenciales(string correo, string password)
     {
-        //string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString;
-        //using (SqlConnection conn = new SqlConnection(connectionString))
-        //{
-        //    conn.Open();
-        //    string query = "SELECT PasswordHash, PasswordSalt FROM Usuarios WHERE Correo = @Correo AND Estado = 1";
-        //    SqlCommand cmd = new SqlCommand(query, conn);
-        //    cmd.Parameters.AddWithValue("@Correo", correo);
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString;
 
-        //    using (SqlDataReader reader = cmd.ExecuteReader())
-        //    {
-        //        if (reader.Read())
-        //        {
-        //            byte[] storedHash = (byte[])reader["PasswordHash"];
-        //            byte[] storedSalt = (byte[])reader["PasswordSalt"];
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            string query = @"
+                SELECT 
+                    cu.PasswordHash, 
+                    cu.PasswordSalt
+                FROM CredencialesUsuario cu
+                INNER JOIN Usuarios u ON cu.IdUsuario = u.IdUsuario
+                WHERE u.Correo = @Correo AND u.Estado = 1";
 
-        //            // Verificar contraseña
-        //            using (var hmac = new HMACSHA512(storedSalt))
-        //            {
-        //                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-        //                return storedHash.SequenceEqual(computedHash);
-        //            }
-        //        }
-        //    }
-        //}
-        //return false;
-        return true;
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@Correo", correo);
+
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                byte[] storedHash = (byte[])reader["PasswordHash"]; 
+                byte[] storedSalt = (byte[])reader["PasswordSalt"];
+                reader.Close();
+
+                return VerificarPassword(password, storedHash, storedSalt);
+            }
+
+            return false; // Usuario no encontrado o inactivo
+        }
+    }
+
+    private bool VerificarPassword(string password, byte[] storedHash, byte[] storedSalt)
+    {
+        using (var hmac = new HMACSHA512(storedSalt))
+        {
+            byte[] computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return StructuralComparisons.StructuralEqualityComparer.Equals(computedHash, storedHash);
+        }
+    }
+
+    public void RegistrarUsuario(string correo, string password)
+    {
+        byte[] passwordSalt, passwordHash;
+
+        using (var hmac = new HMACSHA512())
+        {
+            passwordSalt = hmac.Key; // Genera un salt único
+            passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)); // Calcula el hash
+        }
+
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString;
+
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+
+            // Inserta el usuario en la tabla Usuarios
+            string queryUsuario = @"
+            INSERT INTO Usuarios (IdRol, IdEmpresa, NombreUsuario, Correo, Telefono, Estado)
+            OUTPUT INSERTED.IdUsuario
+            VALUES (@IdRol, @IdEmpresa, @NombreUsuario, @Correo, @Telefono, 1)";
+
+            SqlCommand cmdUsuario = new SqlCommand(queryUsuario, conn);
+            cmdUsuario.Parameters.AddWithValue("@IdRol", 1); // Asigna el rol
+            cmdUsuario.Parameters.AddWithValue("@IdEmpresa", 1); // Asigna la empresa
+            cmdUsuario.Parameters.AddWithValue("@NombreUsuario", "Nombre Ejemplo");
+            cmdUsuario.Parameters.AddWithValue("@Correo", correo);
+            cmdUsuario.Parameters.AddWithValue("@Telefono", "123456789");
+
+            int idUsuario = (int)cmdUsuario.ExecuteScalar();
+
+            // Inserta las credenciales en la tabla CredencialesUsuario
+            string queryCredenciales = @"
+            INSERT INTO CredencialesUsuario (IdUsuario, PasswordHash, PasswordSalt)
+            VALUES (@IdUsuario, @PasswordHash, @PasswordSalt)";
+
+            SqlCommand cmdCredenciales = new SqlCommand(queryCredenciales, conn);
+            cmdCredenciales.Parameters.AddWithValue("@IdUsuario", idUsuario);
+            cmdCredenciales.Parameters.AddWithValue("@PasswordHash", passwordHash);
+            cmdCredenciales.Parameters.AddWithValue("@PasswordSalt", passwordSalt);
+
+            cmdCredenciales.ExecuteNonQuery();
+        }
     }
 
 }

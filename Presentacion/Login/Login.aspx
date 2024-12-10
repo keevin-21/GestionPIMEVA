@@ -21,6 +21,9 @@
                 </div>
                 <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary w-100" Text="Iniciar Sesión" OnClick="btnLogin_Click" />
             </form>
+            <div class="text-center mt-3">
+                <p>¿No tienes una cuenta? <a href="Register.aspx">Regístrate aquí</a></p>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -168,6 +168,7 @@
     <Content Include="CSS\sign-in.css" />
     <Content Include="CSS\tableStyle.css" />
     <Content Include="Login\Login.aspx" />
+    <Content Include="Login\Register.aspx" />
     <Content Include="RECURSOS\JavaScript\TablaDeLogistica.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -213,6 +214,13 @@
     </Compile>
     <Compile Include="Login\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaginasMaestras\Menu.Master.cs">
       <DependentUpon>Menu.Master</DependentUpon>

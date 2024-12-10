@@ -167,6 +167,7 @@
     <Content Include="CSS\sidebar-styles.css" />
     <Content Include="CSS\sign-in.css" />
     <Content Include="CSS\tableStyle.css" />
+    <Content Include="Login\ChangePassword.aspx" />
     <Content Include="Login\Login.aspx" />
     <Content Include="Login\Register.aspx" />
     <Content Include="RECURSOS\JavaScript\TablaDeLogistica.js" />
@@ -207,6 +208,13 @@
     </Compile>
     <Compile Include="Contenido\Perfil_Usuario.aspx.designer.cs">
       <DependentUpon>Perfil_Usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

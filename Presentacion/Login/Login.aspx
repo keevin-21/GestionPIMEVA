@@ -23,6 +23,7 @@
             </form>
             <div class="text-center mt-3">
                 <p>¿No tienes una cuenta? <a href="Register.aspx">Regístrate aquí</a></p>
+                <p>¿Olvidaste tu contraseña? <a href="ChangePassword.aspx">Da click aquí</a></p>
             </div>
         </div>
     </div>

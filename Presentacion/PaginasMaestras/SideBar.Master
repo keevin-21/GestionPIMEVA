@@ -96,6 +96,7 @@
                                 <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Contenido/Logistica.aspx" runat="server"  CssClass="nav-link">Logistica</asp:HyperLink>
                                 <asp:HyperLink ID="HyperLink2" CssClass="nav-link" NavigateUrl="~/Contenido/Gestion_Buques.aspx" runat="server" >Buques</asp:HyperLink>
                                 <asp:HyperLink ID="HyperLink3" CssClass="nav-link" NavigateUrl="~/Contenido/Gestion_Empresas.aspx" runat="server" >Agencias</asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink6" CssClass="nav-link" NavigateUrl="~/Contenido/Gestionar_Usuarios.aspx" runat="server" >Usuarios</asp:HyperLink>
                                 <asp:HyperLink ID="HyperLink4" CssClass="nav-link" NavigateUrl="~/Contenido/Historial_Cambios.aspx" runat="server" >Historial</asp:HyperLink>
                                 <asp:HyperLink ID="HyperLink5" CssClass="nav-link" NavigateUrl="~/Contenido/Perfil_Usuario.aspx" runat="server">Perfil</asp:HyperLink>
                             </div>

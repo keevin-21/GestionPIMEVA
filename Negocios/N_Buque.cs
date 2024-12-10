@@ -9,7 +9,7 @@ namespace Negocios
     {
         D_Buque dBuque = new D_Buque();
 
-        public List<E_Buque> ListarBuques(string nombreBuque = null, bool? estado = null)
+        public List<E_Buque> ListarBuques(string nombreBuque = null, bool estado = true)
         {
             return dBuque.ListarBuques(nombreBuque, estado);
         }
@@ -36,7 +36,7 @@ namespace Negocios
         }
         public List<E_Buque> ObtenerBuques()
         {
-            return DB.ListarBuques();
+            return dBuque.ListarBuques();
         }
     }
 

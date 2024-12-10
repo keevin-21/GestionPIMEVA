@@ -10,6 +10,8 @@ namespace Datos
     public class D_Empresa
     {
         public SqlConnection conn;
+        public SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString);
+
         public D_Empresa()
         {
             conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString);
@@ -19,14 +21,14 @@ namespace Datos
         {
             List<E_Empresa> empresas = new List<E_Empresa>();
 
-            using (conn)
+            using (conn2)
             {
-                SqlCommand cmd = new SqlCommand("sp_ConsultarEmpresa", conn);
+                SqlCommand cmd = new SqlCommand("sp_ConsultarEmpresa", conn2);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@NombreEmpresa", (object)nombreEmpresa ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Estado", (object)estado ?? DBNull.Value);
 
-                conn.Open();
+                conn2.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -41,7 +43,7 @@ namespace Datos
                     empresas.Add(empresa);
                 }
             }
-            conn.Close();
+            conn2.Close();
             return empresas;
         }
 

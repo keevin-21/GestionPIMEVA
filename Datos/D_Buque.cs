@@ -17,7 +17,7 @@ namespace Datos
             conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString);
         }
 
-        public List<E_Buque> ListarBuques(string nombreBuque = null, bool? estado = null)
+        public List<E_Buque> ListarBuques(string nombreBuque = null, bool estado = true)
         {
             List<E_Buque> buques = new List<E_Buque>();
 

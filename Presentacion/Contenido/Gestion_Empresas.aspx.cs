@@ -11,7 +11,7 @@ namespace Presentacion.Contenido
         N_Empresa NE = new N_Empresa();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            VisualizaEmpresas();
         }
 
         #region Métodos generales

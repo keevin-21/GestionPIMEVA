@@ -6,18 +6,28 @@ using Negocios;
 
 namespace Presentacion.Contenido
 {
-    public partial class Gestion_Buques : System.Web.UI.Page
+    public partial class Gestion_Usuarios : System.Web.UI.Page
     {
-        N_Buque NB = new N_Buque();
+        N_Usuarios NU = new N_Usuarios();
+        N_Roles NR = new N_Roles(); // Asumiendo que tienes una capa de negocios para Roles
         N_Empresa NE = new N_Empresa();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                CargarRoles();
                 CargarEmpresas();
-                VisualizaBuques();
             }
+        }
+
+        private void CargarRoles()
+        {
+            ddlRol.DataSource = NR.ListarRoles();
+            ddlRol.DataTextField = "NombreRol";
+            ddlRol.DataValueField = "IdRol";
+            ddlRol.DataBind();
+            ddlRol.Items.Insert(0, new ListItem("--Seleccionar Rol--", "0"));
         }
 
         private void CargarEmpresas()
@@ -33,7 +43,7 @@ namespace Presentacion.Contenido
         protected void InicializaControles()
         {
             PnlCapturaDatos.Visible = false;
-            PnlGrvBuques.Visible = true;
+            PnlGrvUsuarios.Visible = false;
             lblMensaje.Visible = false;
             ControlesClear();
 
@@ -46,50 +56,59 @@ namespace Presentacion.Contenido
         protected void ControlesClear()
         {
             TbCriterioBusqueda.Text = string.Empty;
-            tbNombreBuque.Text = string.Empty;
+            tbNombreUsuario.Text = string.Empty;
+            ddlRol.SelectedIndex = 0;
             ddlEmpresa.SelectedIndex = 0;
+            tbCorreo.Text = string.Empty;
+            tbTelefono.Text = string.Empty;
         }
         protected void AtributosHeaderCard(string Msg, string Color)
         {
             lblAccion.Text = Msg;
             CardHeader.Attributes["class"] = "card-header " + Color;
         }
-        protected void VisualizaBuques()
+        protected void VisualizaUsuarios()
         {
             InicializaControles();
-            GrvBuques.DataSource = NB.ListarBuques();
-            GrvBuques.DataBind();
-            PnlGrvBuques.Visible = true;
+            GrvUsuarios.DataSource = NU.ListarUsuarios();
+            GrvUsuarios.DataBind();
+            PnlGrvUsuarios.Visible = true;
         }
-        protected E_Buque ControlesWebForm_ObjetoEntidad()
+        protected E_Usuarios ControlesWebForm_ObjetoEntidad()
         {
-            E_Buque Buque = new E_Buque()
+            E_Usuarios Usuario = new E_Usuarios()
             {
-                NombreBuque = tbNombreBuque.Text.Trim(),
+                NombreUsuario = tbNombreUsuario.Text.Trim(),
+                IdRol = int.Parse(ddlRol.SelectedValue),
                 IdEmpresa = int.Parse(ddlEmpresa.SelectedValue),
+                Correo = tbCorreo.Text.Trim(),
+                Telefono = tbTelefono.Text.Trim(),
                 Estado = true
             };
 
-            return Buque;
+            return Usuario;
         }
-        protected void ObjetoEntidad_ControlesWebForm(int idBuque)
+        protected void ObjetoEntidad_ControlesWebForm(int idUsuario)
         {
-            E_Buque Buque = NB.BuscarBuquePorID(idBuque);
+            E_Usuarios Usuario = NU.BuscarUsuarioPorID(idUsuario);
 
-            tbNombreBuque.Text = Buque.NombreBuque.Trim();
-            ddlEmpresa.SelectedValue = Buque.IdEmpresa.ToString();
+            tbNombreUsuario.Text = Usuario.NombreUsuario.Trim();
+            ddlRol.SelectedValue = Usuario.IdRol.ToString();
+            ddlEmpresa.SelectedValue = Usuario.IdEmpresa.ToString();
+            tbCorreo.Text = Usuario.Correo.Trim();
+            tbTelefono.Text = Usuario.Telefono.Trim();
 
-            BtnModificar.Visible = true;
             BtnBorrar.Visible = true;
+            BtnModificar.Visible = true;
             BtnCancelar.Visible = true;
         }
         #endregion
 
         #region Botones menú de navegación 
-        protected void BtnNuevoBuque_Click(object sender, EventArgs e)
+        protected void BtnNuevoUsuario_Click(object sender, EventArgs e)
         {
             InicializaControles();
-            AtributosHeaderCard("Registrar nuevo Buque", "bg-success");
+            AtributosHeaderCard("Registrar nuevo Usuario", "bg-success");
 
             PnlCapturaDatos.Visible = true;
 
@@ -100,9 +119,9 @@ namespace Presentacion.Contenido
             BtnModificar.Visible = false;
             BtnBorrar.Visible = false;
         }
-        protected void btnListarBuques_Click(object sender, EventArgs e)
+        protected void btnListarUsuarios_Click(object sender, EventArgs e)
         {
-            VisualizaBuques();
+            VisualizaUsuarios();
         }
         protected void BtnBuscar_Click(object sender, EventArgs e)
         {
@@ -110,28 +129,28 @@ namespace Presentacion.Contenido
             {
                 if (!string.IsNullOrEmpty(TbCriterioBusqueda.Text.Trim()))
                 {
-                    List<E_Buque> Lst = NB.ListarBuques(TbCriterioBusqueda.Text);
+                    List<E_Usuarios> Lst = NU.ListarUsuarios(TbCriterioBusqueda.Text);
 
                     if (Lst.Count == 0)
                     {
-                        lblMensaje.Text = "No se encontró el buque solicitado";
+                        lblMensaje.Text = "No se encontró el usuario solicitado";
                         lblMensaje.CssClass = "alert alert-warning";
                         lblMensaje.Visible = true;
                     }
                     else if (Lst.Count == 1)
                     {
-                        AtributosHeaderCard("Modificar o Borrar los datos del buque", "bg-warning");
-                        hfIdBuque.Value = Lst[0].IdBuque.ToString();
-                        ObjetoEntidad_ControlesWebForm(Convert.ToInt32(hfIdBuque.Value));
+                        AtributosHeaderCard("Modificar o Borrar los datos del usuario", "bg-warning");
+                        hfIdUsuario.Value = Lst[0].IdUsuario.ToString();
+                        ObjetoEntidad_ControlesWebForm(Convert.ToInt32(hfIdUsuario.Value));
 
                         PnlCapturaDatos.Visible = true;
-                        PnlGrvBuques.Visible = false;
+                        PnlGrvUsuarios.Visible = false;
                     }
                     else
                     {
-                        GrvBuques.DataSource = Lst;
-                        GrvBuques.DataBind();
-                        PnlGrvBuques.Visible = true;
+                        GrvUsuarios.DataSource = Lst;
+                        GrvUsuarios.DataBind();
+                        PnlGrvUsuarios.Visible = true;
                     }
                 }
             }
@@ -147,9 +166,9 @@ namespace Presentacion.Contenido
         #region Botones IBM
         protected void btnInsertar_Click(object sender, EventArgs e)
         {
-            E_Buque EB = ControlesWebForm_ObjetoEntidad();
+            E_Usuarios EU = ControlesWebForm_ObjetoEntidad();
 
-            string[] Msg = NB.InsertarBuque(EB).Split(':');
+            string[] Msg = NU.InsertarUsuario(EU).Split(':');
             lblMensaje.Text = Msg[1];
             lblMensaje.CssClass = Msg[0] == "Exito" ? "alert alert-success" : "alert alert-danger";
             lblMensaje.Visible = true;
@@ -159,8 +178,8 @@ namespace Presentacion.Contenido
         }
         protected void btnBorrar_Click(object sender, EventArgs e)
         {
-            int ID = Convert.ToInt32(hfIdBuque.Value);
-            string[] Msg = NB.BorrarBuque(ID).Split(':');
+            int ID = Convert.ToInt32(hfIdUsuario.Value);
+            string[] Msg = NU.BorrarUsuario(ID).Split(':');
 
             lblMensaje.Text = Msg[1];
             lblMensaje.CssClass = Msg[0] == "Exito" ? "alert alert-success" : "alert alert-danger";
@@ -171,10 +190,10 @@ namespace Presentacion.Contenido
         }
         protected void BtnModificar_Click(object sender, EventArgs e)
         {
-            int ID = Convert.ToInt32(hfIdBuque.Value);
-            E_Buque EB = new E_Buque(ID, tbNombreBuque.Text.Trim(), int.Parse(ddlEmpresa.SelectedValue), string.Empty, true);
+            int ID = Convert.ToInt32(hfIdUsuario.Value);
+            E_Usuarios EU = new E_Usuarios  (ID, int.Parse(ddlRol.SelectedValue), int.Parse(ddlEmpresa.SelectedValue), tbNombreUsuario.Text.Trim(), tbCorreo.Text.Trim(), tbTelefono.Text.Trim(), DateTime.Now, true, string.Empty, string.Empty);
 
-            string[] Msg = NB.ModificarBuque(EB).Split(':');
+            string[] Msg = NU.ModificarUsuario(EU).Split(':');
             lblMensaje.Text = Msg[1];
             lblMensaje.CssClass = Msg[0] == "Exito" ? "alert alert-success" : "alert alert-danger";
             lblMensaje.Visible = true;
@@ -182,26 +201,25 @@ namespace Presentacion.Contenido
             if (Msg[0] == "Exito")
                 InicializaControles();
         }
-
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {
-            VisualizaBuques();
+            VisualizaUsuarios();
         }
         #endregion
 
         #region Botones Grv
-        protected void GrvBuques_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void GrvUsuarios_RowEditing(object sender, GridViewEditEventArgs e)
         {
             try
             {
-                AtributosHeaderCard("Modificar los datos del buque", "bg-primary");
+                AtributosHeaderCard("Modificar los datos del usuario", "bg-primary");
 
-                hfIdBuque.Value = GrvBuques.DataKeys[e.NewEditIndex].Value.ToString();
+                hfIdUsuario.Value = GrvUsuarios.DataKeys[e.NewEditIndex].Value.ToString();
                 e.Cancel = true;
-                ObjetoEntidad_ControlesWebForm(Convert.ToInt32(hfIdBuque.Value));
+                ObjetoEntidad_ControlesWebForm(Convert.ToInt32(hfIdUsuario.Value));
 
                 PnlCapturaDatos.Visible = true;
-                PnlGrvBuques.Visible = false;
+                PnlGrvUsuarios.Visible = false;
 
                 BtnInsertar.Visible = false;
                 BtnBorrar.Visible = false;
@@ -215,17 +233,17 @@ namespace Presentacion.Contenido
                 lblMensaje.Visible = true;
             }
         }
-        protected void GrvBuques_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void GrvUsuarios_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
-                AtributosHeaderCard("Borrar los datos del buque", "bg-danger");
-                hfIdBuque.Value = GrvBuques.DataKeys[e.RowIndex].Value.ToString();
-                ObjetoEntidad_ControlesWebForm(Convert.ToInt32(hfIdBuque.Value));
+                AtributosHeaderCard("Borrar los datos del usuario", "bg-danger");
+                hfIdUsuario.Value = GrvUsuarios.DataKeys[e.RowIndex].Value.ToString();
+                ObjetoEntidad_ControlesWebForm(Convert.ToInt32(hfIdUsuario.Value));
                 e.Cancel = true;
 
                 PnlCapturaDatos.Visible = true;
-                PnlGrvBuques.Visible = false;
+                PnlGrvUsuarios.Visible = false;
 
                 BtnInsertar.Visible = false;
                 BtnBorrar.Visible = true;

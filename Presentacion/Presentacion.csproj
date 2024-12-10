@@ -159,6 +159,7 @@
   <ItemGroup>
     <Content Include="Contenido\Gestion_Buques.aspx" />
     <Content Include="Contenido\Gestion_Empresas.aspx" />
+    <Content Include="Contenido\Gestion_Usuarios.aspx" />
     <Content Include="Contenido\Historial_Cambios.aspx" />
     <Content Include="Contenido\Inicio.aspx" />
     <Content Include="Contenido\Logistica.aspx" />
@@ -187,6 +188,13 @@
     </Compile>
     <Compile Include="Contenido\Gestion_Empresas.aspx.designer.cs">
       <DependentUpon>Gestion_Empresas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contenido\Gestion_Usuarios.aspx.cs">
+      <DependentUpon>Gestion_Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contenido\Gestion_Usuarios.aspx.designer.cs">
+      <DependentUpon>Gestion_Usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contenido\Historial_Cambios.aspx.cs">
       <DependentUpon>Historial_Cambios.aspx</DependentUpon>

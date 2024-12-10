@@ -6,7 +6,6 @@ using System.Web.Services;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Collections.Generic;
-using Web.config;
 
 namespace Presentacion.Contenido
 {

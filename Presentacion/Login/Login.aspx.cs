@@ -20,7 +20,7 @@ public partial class Login : System.Web.UI.Page
             System.Web.Security.FormsAuthentication.SetAuthCookie(correo, false);
 
             // Redirige al dashboard o página principal
-            Response.Redirect("~/Contenido/Schedule.aspx");
+            Response.Redirect("~/Contenido/Logistica.aspx");
         }
         else
         {

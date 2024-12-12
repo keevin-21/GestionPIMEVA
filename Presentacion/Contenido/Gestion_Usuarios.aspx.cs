@@ -9,7 +9,7 @@ namespace Presentacion.Contenido
     public partial class Gestion_Usuarios : System.Web.UI.Page
     {
         N_Usuarios NU = new N_Usuarios();
-        N_Roles NR = new N_Roles(); // Asumiendo que tienes una capa de negocios para Roles
+        N_Roles NR = new N_Roles();
         N_Empresa NE = new N_Empresa();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -18,6 +18,7 @@ namespace Presentacion.Contenido
             {
                 CargarRoles();
                 CargarEmpresas();
+                VisualizaUsuarios();
             }
         }
 
@@ -108,7 +109,7 @@ namespace Presentacion.Contenido
         protected void BtnNuevoUsuario_Click(object sender, EventArgs e)
         {
             InicializaControles();
-            AtributosHeaderCard("Registrar nuevo Usuario", "bg-success");
+            AtributosHeaderCard("Registrar nuevo Usuario", "bg-primary");
 
             PnlCapturaDatos.Visible = true;
 

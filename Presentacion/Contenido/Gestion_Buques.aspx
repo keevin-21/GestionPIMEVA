@@ -121,7 +121,7 @@
                         OnRowDeleting="GrvBuques_RowDeleting"
                         CssClass="table table-sm table-bordered">
                         <Columns>
-                            <asp:BoundField DataField="IdBuque" HeaderText="ID" />
+
                             <asp:BoundField DataField="NombreBuque" HeaderText="BUQUE" />
                             <asp:BoundField DataField="NombreEmpresa" HeaderText="EMPRESA" />
                             <asp:TemplateField>

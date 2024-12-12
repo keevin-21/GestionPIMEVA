@@ -89,9 +89,10 @@ namespace Presentacion.Contenido
         protected void BtnNuevoBuque_Click(object sender, EventArgs e)
         {
             InicializaControles();
-            AtributosHeaderCard("Registrar nuevo Buque", "bg-success");
+            AtributosHeaderCard("Registrar nuevo Buque", "bg-primary");
 
             PnlCapturaDatos.Visible = true;
+            PnlGrvBuques.Visible = false;
 
             BtnInsertar.Visible = true;
             BtnCancelar.Visible = true;
@@ -155,7 +156,10 @@ namespace Presentacion.Contenido
             lblMensaje.Visible = true;
 
             if (Msg[0] == "Exito")
+            {
                 InicializaControles();
+                VisualizaBuques();
+            }
         }
         protected void btnBorrar_Click(object sender, EventArgs e)
         {
@@ -167,7 +171,10 @@ namespace Presentacion.Contenido
             lblMensaje.Visible = true;
 
             if (Msg[0] == "Exito")
+            {
                 InicializaControles();
+                VisualizaBuques();
+            }
         }
         protected void BtnModificar_Click(object sender, EventArgs e)
         {
@@ -180,7 +187,10 @@ namespace Presentacion.Contenido
             lblMensaje.Visible = true;
 
             if (Msg[0] == "Exito")
+            {
                 InicializaControles();
+                VisualizaBuques();
+            }
         }
 
         protected void BtnCancelar_Click(object sender, EventArgs e)

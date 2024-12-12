@@ -11,7 +11,7 @@ namespace Presentacion.Contenido
         N_Empresa NE = new N_Empresa();
         protected void Page_Load(object sender, EventArgs e)
         {
-            VisualizaEmpresas();
+
         }
 
         #region Métodos generales
@@ -23,8 +23,8 @@ namespace Presentacion.Contenido
             ControlesClear();
 
             // Restablecer visibilidad de botones
-            BtnInsertar.Visible = false; 
-            BtnModificar.Visible = false; 
+            BtnInsertar.Visible = false;
+            BtnModificar.Visible = false;
             BtnBorrar.Visible = false;
             BtnCancelar.Visible = false;
         }
@@ -70,15 +70,15 @@ namespace Presentacion.Contenido
         protected void BtnNuevaEmpresa_Click(object sender, EventArgs e)
         {
             InicializaControles();
-            AtributosHeaderCard("Registrar nueva Empresa", "bg-success");
+            AtributosHeaderCard("Registrar nueva Empresa", "bg-primary");
 
             PnlCapturaDatos.Visible = true;
 
             BtnInsertar.Visible = true;
-            BtnCancelar.Visible = true; 
-            
+            BtnCancelar.Visible = true;
+
             // Ocultar botones "Modificar" y "Borrar"
-            BtnModificar.Visible = false; 
+            BtnModificar.Visible = false;
             BtnBorrar.Visible = false;
         }
         protected void btnListarEmpresas_Click(object sender, EventArgs e)
@@ -106,6 +106,11 @@ namespace Presentacion.Contenido
                         ObjetoEntidad_ControlesWebForm(Convert.ToInt32(hfIdEmpresa.Value));
 
                         PnlCapturaDatos.Visible = true;
+                        PnlGrvEmpresas.Visible = false;
+
+                        BtnBorrar.Visible = true;
+                        BtnModificar.Visible = true;
+                        BtnCancelar.Visible = true;
                     }
                     else
                     {
@@ -135,7 +140,11 @@ namespace Presentacion.Contenido
             lblMensaje.Visible = true;
 
             if (Msg[0] == "Exito")
+            {
                 InicializaControles();
+                VisualizaEmpresas();
+            }
+
         }
         protected void btnBorrar_Click(object sender, EventArgs e)
         {
@@ -147,7 +156,10 @@ namespace Presentacion.Contenido
             lblMensaje.Visible = true;
 
             if (Msg[0] == "Exito")
+            {
                 InicializaControles();
+                VisualizaEmpresas();
+            }
         }
         protected void BtnModificar_Click(object sender, EventArgs e)
         {
@@ -160,7 +172,12 @@ namespace Presentacion.Contenido
             lblMensaje.Visible = true;
 
             if (Msg[0] == "Exito")
+            {
                 InicializaControles();
+                VisualizaEmpresas();
+            }
+                
+
         }
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {

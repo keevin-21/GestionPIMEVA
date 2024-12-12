@@ -6,12 +6,17 @@
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"> 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script type="module" src="../RECURSOS/JavaScript/TablaDeLogistica.js"></script>
+
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
 
     <table id="logisticaTable" class="display" style="width:100%">
         <thead>
             <tr>
+                <th>ID Registro</th>
                 <th>Buque</th>
                 <th>LOA</th>
                 <th>Operation Time</th>
@@ -23,10 +28,9 @@
                 <th>Cargo</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- Aquí se añadirán nuevas filas -->
-        </tbody>
     </table>
-    <script type="text/javascript" src="../RECURSOS/JavaScript/TablaDeLogistica.js"></script>
-
+    <div>
+        <asp:Button ID="btnActualizar" runat="server" Text="Actualizar Datos" CssClass="btn btn-primary" OnClick="btnActualizar_Click" />
+    </div>
+    <!-- Referencia al archivo JS -->
 </asp:Content>

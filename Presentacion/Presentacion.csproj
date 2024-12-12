@@ -161,7 +161,6 @@
     <Content Include="Contenido\Gestion_Empresas.aspx" />
     <Content Include="Contenido\Gestion_Usuarios.aspx" />
     <Content Include="Contenido\Historial_Cambios.aspx" />
-    <Content Include="Contenido\Inicio.aspx" />
     <Content Include="Contenido\Logistica.aspx" />
     <Content Include="Contenido\Perfil_Usuario.aspx" />
     <Content Include="CSS\content.css" />
@@ -170,7 +169,7 @@
     <Content Include="CSS\sidebar-styles.css" />
     <Content Include="CSS\sign-in.css" />
     <Content Include="CSS\tableStyle.css" />
-    <Content Include="Login\Login.aspx" />
+    <Content Include="Login2\Login.aspx" />
     <Content Include="RECURSOS\JavaScript\TablaDeLogistica.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -203,13 +202,6 @@
     <Compile Include="Contenido\Historial_Cambios.aspx.designer.cs">
       <DependentUpon>Historial_Cambios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contenido\Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contenido\Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Contenido\Logistica.aspx.cs">
       <DependentUpon>Logistica.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -224,11 +216,11 @@
     <Compile Include="Contenido\Perfil_Usuario.aspx.designer.cs">
       <DependentUpon>Perfil_Usuario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login\Login.aspx.cs">
+    <Compile Include="Login2\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login\Login.aspx.designer.cs">
+    <Compile Include="Login2\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaginasMaestras\Menu.Master.cs">

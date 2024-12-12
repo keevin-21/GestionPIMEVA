@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Datos
 {
@@ -19,9 +15,10 @@ namespace Datos
             {
                 string query = @"
                     SELECT 
+                        l.IdRegistro,
                         b.NombreBuque AS Buque,
                         l.LOA,
-                        FORMAT(l.OperationTime, 'HH:mm') AS [OperationTime],
+                        FORMAT(OperationTime, 'HH:mm') AS [Operation Time],
                         l.ETA,
                         l.POB,
                         l.ETB,
@@ -40,6 +37,36 @@ namespace Datos
             }
 
             return dt;
+        }
+
+        public bool ActualizarLogistica()
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_ActualizarLogistica", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected == 0)
+                        {
+                            throw new Exception("No se actualizaron registros en la base de datos.");
+                        }
+
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al actualizar la logística: " + ex.Message);
+                }
+            }
         }
 
     }

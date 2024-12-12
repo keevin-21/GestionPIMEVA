@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Web.Services;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Presentacion.Contenido
 {
@@ -51,5 +52,18 @@ namespace Presentacion.Contenido
             }
         }
 
+        protected void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var negocioLogistica = new N_TablaDeLogistica();
+                negocioLogistica.ActualizarLogistica(); // Llamada para actualizar datos
+                Response.Write("<script>alert('Datos actualizados correctamente.');</script>");
+            }
+            catch (Exception ex)
+            {
+                Response.Write($"<script>alert('Error al actualizar los datos: {ex.Message}');</script>");
+            }
+        }
     }
 }

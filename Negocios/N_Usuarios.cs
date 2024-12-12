@@ -9,6 +9,21 @@ namespace Negocios
     {
         D_Usuarios dUsuario = new D_Usuarios();
 
+        //public E_Usuarios ObtenerUsuarioPorCorreo(string correo)
+        //{
+        //    return dUsuario.ObtenerUsuarioPorCorreo(correo);
+        //}
+
+        //public byte[] ObtenerPasswordHash(int idUsuario)
+        //{
+        //    return dUsuario.ObtenerPasswordHash(idUsuario);
+        //}
+
+        //public byte[] ObtenerPasswordSalt(int idUsuario)
+        //{
+        //    return dUsuario.ObtenerPasswordSalt(idUsuario);
+        //}
+
         public List<E_Usuarios> ListarUsuarios(string nombreUsuario = null, bool? estado = null)
         {
             return dUsuario.ListarUsuarios(nombreUsuario, estado);

@@ -109,7 +109,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tbTelefono">Teléfono</label>
-                            <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" />
+                            <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control"  />
                         </div>
                     </div>
 
@@ -131,7 +131,7 @@
                         OnRowDeleting="GrvUsuarios_RowDeleting"
                         CssClass="table table-sm table-bordered">
                         <Columns>
-                            <asp:BoundField DataField="IdUsuario" HeaderText="ID" />
+
                             <asp:BoundField DataField="NombreUsuario" HeaderText="USUARIO" />
                             <asp:BoundField DataField="NombreRol" HeaderText="ROL" />
                             <asp:BoundField DataField="NombreEmpresa" HeaderText="EMPRESA" />

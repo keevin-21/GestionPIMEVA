@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Entidades;
 using Datos;
+using Datos.Datos;
 
 namespace Negocios
 {
@@ -9,7 +10,7 @@ namespace Negocios
     {
         D_Empresa dEmpresa = new D_Empresa();
 
-        public List<E_Empresa> ListarEmpresas(string nombreEmpresa = null, bool? estado = null)
+        public List<E_Empresa> ListarEmpresas(string nombreEmpresa = null, bool estado = true)
         {
             return dEmpresa.ListarEmpresas(nombreEmpresa, estado);
         }

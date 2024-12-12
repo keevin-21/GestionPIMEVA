@@ -11,11 +11,90 @@ namespace Datos
     {
         public SqlConnection conn;
         public SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString);
+        public SqlConnection conn3 = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString);
+
 
         public D_Usuarios()
         {
             conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString);
         }
+
+        //public E_Usuarios ObtenerUsuarioPorCorreo(string correo)
+        //{
+        //    E_Usuarios usuario = null;
+
+        //    using (conn)
+        //    {
+        //        SqlCommand cmd = new SqlCommand("sp_ObtenerUsuarioPorCorreo", conn);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Parameters.AddWithValue("@Correo", correo);
+
+        //        conn.Open();
+        //        SqlDataReader reader = cmd.ExecuteReader();
+
+        //        if (reader.Read())
+        //        {
+        //            usuario = new E_Usuarios
+        //            {
+        //                IdUsuario = Convert.ToInt32(reader["IdUsuario"]),
+        //                IdRol = Convert.ToInt32(reader["IdRol"]),
+        //                IdEmpresa = Convert.ToInt32(reader["IdEmpresa"]),
+        //                NombreUsuario = reader["NombreUsuario"].ToString(),
+        //                Correo = reader["Correo"].ToString(),
+        //                Telefono = reader["Telefono"].ToString(),
+        //                FechaRegistro = Convert.ToDateTime(reader["FechaRegistro"]),
+        //                Estado = Convert.ToBoolean(reader["Estado"])
+        //            };
+        //        }
+        //    }
+        //    conn.Close();
+        //    return usuario;
+        //}
+
+        //public byte[] ObtenerPasswordHash(int idUsuario)
+        //{
+        //    byte[] passwordHash = null;
+
+        //    using (conn2)
+        //    {
+        //        SqlCommand cmd = new SqlCommand("sp_ObtenerPasswordHash", conn2);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+
+        //        conn2.Open();
+        //        SqlDataReader reader = cmd.ExecuteReader();
+
+        //        if (reader.Read())
+        //        {
+        //            passwordHash = (byte[])reader["PasswordHash"];
+        //        }
+        //    }
+        //    conn2.Close();
+        //    return passwordHash;
+        //}
+
+        //public byte[] ObtenerPasswordSalt(int idUsuario)
+        //{
+        //    byte[] passwordSalt = null;
+
+        //    using (conn3)
+        //    {
+        //        SqlCommand cmd = new SqlCommand("sp_ObtenerPasswordSalt", conn3);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+
+        //        conn3.Open();
+        //        SqlDataReader reader = cmd.ExecuteReader();
+
+        //        if (reader.Read())
+        //        {
+        //            passwordSalt = (byte[])reader["PasswordSalt"];
+        //        }
+        //    }
+        //    conn3.Close();
+        //    return passwordSalt;
+        //}
+
 
         public List<E_Usuarios> ListarUsuarios(string nombreUsuario = null, bool? estado = null)
         {
@@ -23,7 +102,7 @@ namespace Datos
 
             using (conn2)
             {
-                SqlCommand cmd = new SqlCommand("sp_ConsultarUsuarios", conn2);
+                SqlCommand cmd = new SqlCommand("sp_ConsultarUsuariosCRUD", conn2);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@NombreUsuario", (object)nombreUsuario ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Estado", (object)estado ?? DBNull.Value);
